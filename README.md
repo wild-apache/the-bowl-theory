@@ -1,62 +1,34 @@
-# The Bowl Theory
+# The Bowl Theory — static storefront
 
-A monorepo for **The Bowl Theory** cloud kitchen: customer storefront, kitchen administration, and business operations tools.
+A simple, responsive storefront built with **HTML, CSS and vanilla JavaScript**. There is no Node.js, npm, pnpm, framework, build step or dependency installation.
 
-## Current status
+## Files
 
-The first responsive storefront has been scaffolded in `apps/storefront` with an editorial premium-brand direction: warm paper tones, olive and ink, serif typography, restrained labels, and a mobile-first menu experience. It includes category filters, menu search, product cards, selectable pack sizes, and configurable ordering/contact links.
+- `index.html` — page structure and content
+- `styles.css` — responsive visual design
+- `script.js` — menu filters, portion selection, order basket and checkout behaviour
 
-**Pricing note:** current storefront prices are indicative preview values and must be verified against recipe costs, packaging, taxes, and channel fees before launch.
+## Preview locally
 
-## Project structure
+Open `index.html` in a browser. No terminal is required. An internet connection is needed for the hosted fonts and food photography.
 
-```text
-apps/
-  storefront/   Next.js customer-facing menu and ordering entry point
-  admin/        Planned kitchen operations and business dashboard
-  api/          Planned API and integration layer
-packages/
-  ui/           Shared UI primitives
-  types/        Planned shared TypeScript domain types
-  config/       Planned shared tooling configuration
-business/
-  pricing/      Recipe costing, pack costing, and price lists
-  inventory/    Ingredients, packaging, and stock tracking
-  operations/   Preparation, order fulfilment, and checklists
-  analytics/    Sales, margin, and operating metrics
-docs/
-  architecture.md
-  roadmap.md
-  deployment.md
-```
+## Deploy on Cloudflare Pages
 
-## Run locally
+Create a Pages project connected to this GitHub repository and use these settings:
 
-Requires Node.js 20+ and pnpm 9.
+- **Production branch:** `main`
+- **Build command:** leave blank
+- **Build output directory:** `/` or `.` (the repository root, depending on the Cloudflare dashboard's accepted value)
+- **Root directory:** leave blank
 
-```bash
-pnpm install
-pnpm dev
-```
+Cloudflare Pages will serve `index.html` directly. There is no build step.
 
-## Build checks
+## Enable WhatsApp ordering
 
-```bash
-pnpm lint
-pnpm typecheck
-pnpm build
-```
+In `script.js`, replace the empty value in the first line with your WhatsApp business number in international format, digits only, with no plus sign or spaces. Example format: `919876543210`.
 
-## Configuration
+Until a number is configured, customers can still build an order and copy the order summary to send manually.
 
-Set `NEXT_PUBLIC_SWIGGY_URL`, `NEXT_PUBLIC_ZOMATO_URL`, `NEXT_PUBLIC_INSTAGRAM_URL`, and `NEXT_PUBLIC_CONTACT_URL` in the storefront deployment environment. See `.env.example` for placeholders.
+## Before launch
 
-## Security
-
-- Never commit API keys, access tokens, database credentials, customer information, or payment secrets.
-- Keep local secrets in untracked environment files.
-- Treat customer/order data and internal financial reports as private operational data, even though this source repository is public.
-
-## Roadmap
-
-See [the roadmap](docs/roadmap.md) for the planned sequence and [the architecture notes](docs/architecture.md) for application boundaries.
+The menu prices are carried over as **illustrative preview prices** from the previous storefront. Confirm all prices, portion weights, item descriptions, delivery availability, and business contact details before publishing for customers. Food images are loaded from Unsplash and require an internet connection.
